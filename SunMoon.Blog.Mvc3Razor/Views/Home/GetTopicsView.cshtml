@@ -1,0 +1,12 @@
+﻿@model SunMoon.Blog.Mvc3Razor.Models.TopicsPartial
+@foreach (var t in Model.Topics.OrderByDescending(topic => topic.CreateTime)) {
+    @Html.Partial("TopicDetailsPartial", t)
+}
+@if (Model.HaveNextRecord) {
+    <li class="next_page"><a href="javascript:void(0)"
+            class="show_more"
+            count="@Model.Count"
+            currentIndex="@Model.BeginIndex"
+            onclick = "showMoreTopics(this)"
+            >点击显示更多消息 </a></li>
+}

@@ -1,0 +1,31 @@
+﻿@model SunMoon.Blog.Mvc3Razor.Models.Messages
+
+@if (Model != null) {
+    <ul>
+        @foreach (var m in Model.Store) {
+            <li>
+                <a href="javascript:void(0)" class="request" >
+                    @m.Author
+                </a>
+
+            </li>
+        }
+    </ul>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $(".request").click(function () {
+            var userId = $(this).html();
+            var url = "/Friend/AddFriend";
+            var parameter = { "Friend": userId };
+
+            $.post(url, parameter,
+                function (data) {
+                    showFriends();
+                }
+
+       );
+        });
+    });
+</script>

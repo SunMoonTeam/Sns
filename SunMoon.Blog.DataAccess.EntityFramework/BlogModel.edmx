@@ -1,0 +1,1088 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="blogModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="blogModelStoreContainer">
+          <EntitySet Name="Album" EntityType="blogModel.Store.Album" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="blogModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Circle" EntityType="blogModel.Store.Circle" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Comment" EntityType="blogModel.Store.Comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Friend" EntityType="blogModel.Store.Friend" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Group" EntityType="blogModel.Store.Group" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="History" EntityType="blogModel.Store.History" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Image" EntityType="blogModel.Store.Image" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Keyword" EntityType="blogModel.Store.Keyword" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Message" EntityType="blogModel.Store.Message" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Topic" EntityType="blogModel.Store.Topic" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="blogModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Album_User" Association="blogModel.Store.FK_Album_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Circle_User" Association="blogModel.Store.FK_Circle_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Circle" EntitySet="Circle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Topic" Association="blogModel.Store.FK_Comment_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="blogModel.Store.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Firend_Circle" Association="blogModel.Store.FK_Firend_Circle">
+            <End Role="Circle" EntitySet="Circle" />
+            <End Role="Friend" EntitySet="Friend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Firend_User" Association="blogModel.Store.FK_Firend_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Friend" EntitySet="Friend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Firend_User1" Association="blogModel.Store.FK_Firend_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Friend" EntitySet="Friend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Album" Association="blogModel.Store.FK_Image_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_User" Association="blogModel.Store.FK_Image_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keyword_Comment" Association="blogModel.Store.FK_Keyword_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Keyword" EntitySet="Keyword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keyword_Topic" Association="blogModel.Store.FK_Keyword_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Keyword" EntitySet="Keyword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_User" Association="blogModel.Store.FK_Message_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_User1" Association="blogModel.Store.FK_Message_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topic_Category" Association="blogModel.Store.FK_Topic_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topic_User" Association="blogModel.Store.FK_Topic_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserGroup" Association="blogModel.Store.FK_User_UserGroup">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="32" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Owner" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Name" Type="varchar" MaxLength="128" />
+          <Property Name="Parent" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="Circle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Owner" Type="varchar" MaxLength="32" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Title" Type="varchar" MaxLength="32" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Author" Type="varchar" MaxLength="32" />
+          <Property Name="TopicID" Type="uniqueidentifier" />
+          <Property Name="IP" Type="varchar" MaxLength="32" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="FriendID" />
+            <PropertyRef Name="Self" />
+          </Key>
+          <Property Name="FriendID" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Self" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="CircleID" Type="uniqueidentifier" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="32" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="varchar" MaxLength="1024" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Guest" Type="varchar" MaxLength="32" />
+          <Property Name="IP" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="32" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" />
+          <Property Name="Data" Type="image" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Owner" Type="varchar" MaxLength="32" />
+          <Property Name="IsAvatar" Type="bit" />
+          <Property Name="AlbumID" Type="uniqueidentifier" />
+          <Property Name="IsCover" Type="bit" />
+          <Property Name="Path" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="128" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="TopicId" Type="uniqueidentifier" />
+          <Property Name="CommendId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="CreateTime" Type="date" />
+          <Property Name="Author" Type="varchar" MaxLength="32" />
+          <Property Name="Owner" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="128" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Author" Type="varchar" MaxLength="32" />
+          <Property Name="CatagoryID" Type="varchar" MaxLength="32" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="CommentCount" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="FirstName" Type="varchar" MaxLength="32" />
+          <Property Name="LastName" Type="varchar" MaxLength="32" />
+          <Property Name="FirstNamePy" Type="varchar" MaxLength="32" />
+          <Property Name="LastNamePy" Type="varchar" MaxLength="32" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Mail" Type="varchar" MaxLength="256" />
+          <Property Name="Passwrod" Type="varchar" MaxLength="32" />
+          <Property Name="QQ" Type="varchar" MaxLength="16" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="16" />
+          <Property Name="Address" Type="varchar" MaxLength="256" />
+          <Property Name="Description" Type="varchar" MaxLength="1024" />
+          <Property Name="Sex" Type="varchar" MaxLength="2" />
+          <Property Name="GroupId" Type="uniqueidentifier" />
+          <Property Name="RegisterIp" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <Association Name="FK_Album_User">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="0..1" />
+          <End Role="Album" Type="blogModel.Store.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Circle_User">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="0..1" />
+          <End Role="Circle" Type="blogModel.Store.Circle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Circle">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Topic">
+          <End Role="Topic" Type="blogModel.Store.Topic" Multiplicity="0..1" />
+          <End Role="Comment" Type="blogModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="0..1" />
+          <End Role="Comment" Type="blogModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Firend_Circle">
+          <End Role="Circle" Type="blogModel.Store.Circle" Multiplicity="0..1" />
+          <End Role="Friend" Type="blogModel.Store.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circle">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="CircleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Firend_User">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="1" />
+          <End Role="Friend" Type="blogModel.Store.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="FriendID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Firend_User1">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="1" />
+          <End Role="Friend" Type="blogModel.Store.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="Self" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Album">
+          <End Role="Album" Type="blogModel.Store.Album" Multiplicity="0..1" />
+          <End Role="Image" Type="blogModel.Store.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="AlbumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_User">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="0..1" />
+          <End Role="Image" Type="blogModel.Store.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keyword_Comment">
+          <End Role="Comment" Type="blogModel.Store.Comment" Multiplicity="0..1" />
+          <End Role="Keyword" Type="blogModel.Store.Keyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Keyword">
+              <PropertyRef Name="CommendId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keyword_Topic">
+          <End Role="Topic" Type="blogModel.Store.Topic" Multiplicity="0..1" />
+          <End Role="Keyword" Type="blogModel.Store.Keyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Keyword">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_User">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="0..1" />
+          <End Role="Message" Type="blogModel.Store.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_User1">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="0..1" />
+          <End Role="Message" Type="blogModel.Store.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topic_Category">
+          <End Role="Category" Type="blogModel.Store.Category" Multiplicity="0..1" />
+          <End Role="Topic" Type="blogModel.Store.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="CatagoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topic_User">
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="0..1" />
+          <End Role="Topic" Type="blogModel.Store.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserGroup">
+          <End Role="Group" Type="blogModel.Store.Group" Multiplicity="0..1" />
+          <End Role="User" Type="blogModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="blogModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="blogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Albums" EntityType="blogModel.Album" />
+          <EntitySet Name="Categories" EntityType="blogModel.Category" />
+          <EntitySet Name="Circles" EntityType="blogModel.Circle" />
+          <EntitySet Name="Comments" EntityType="blogModel.Comment" />
+          <EntitySet Name="Friends" EntityType="blogModel.Friend" />
+          <EntitySet Name="Groups" EntityType="blogModel.Group" />
+          <EntitySet Name="Images" EntityType="blogModel.Image" />
+          <EntitySet Name="Keywords" EntityType="blogModel.Keyword" />
+          <EntitySet Name="Messages" EntityType="blogModel.Message" />
+          <EntitySet Name="Topics" EntityType="blogModel.Topic" />
+          <EntitySet Name="Users" EntityType="blogModel.User" />
+          <AssociationSet Name="FK_Album_User" Association="blogModel.FK_Album_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Album" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Album" Association="blogModel.FK_Image_Album">
+            <End Role="Album" EntitySet="Albums" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topic_Category" Association="blogModel.FK_Topic_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Topic" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Circle_User" Association="blogModel.FK_Circle_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Circle" EntitySet="Circles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Firend_Circle" Association="blogModel.FK_Firend_Circle">
+            <End Role="Circle" EntitySet="Circles" />
+            <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Topic" Association="blogModel.FK_Comment_Topic">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="blogModel.FK_Comment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keyword_Comment" Association="blogModel.FK_Keyword_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Keyword" EntitySet="Keywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Firend_User" Association="blogModel.FK_Firend_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Firend_User1" Association="blogModel.FK_Firend_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserGroup" Association="blogModel.FK_User_UserGroup">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_User" Association="blogModel.FK_Image_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keyword_Topic" Association="blogModel.FK_Keyword_Topic">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Keyword" EntitySet="Keywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_User" Association="blogModel.FK_Message_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_User1" Association="blogModel.FK_Message_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topic_User" Association="blogModel.FK_Topic_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Topic" EntitySet="Topics" />
+          </AssociationSet>
+          <EntitySet Name="Histories" EntityType="blogModel.History" />
+        </EntityContainer>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Owner" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="blogModel.FK_Album_User" FromRole="Album" ToRole="User" />
+          <NavigationProperty Name="Images" Relationship="blogModel.FK_Image_Album" FromRole="Album" ToRole="Image" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Parent" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Topics" Relationship="blogModel.FK_Topic_Category" FromRole="Category" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Circle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Owner" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="blogModel.FK_Circle_User" FromRole="Circle" ToRole="User" />
+          <NavigationProperty Name="Friends" Relationship="blogModel.FK_Firend_Circle" FromRole="Circle" ToRole="Friend" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Author" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="TopicID" Type="Guid" />
+          <Property Name="IP" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="ParentId" Type="Guid" />
+          <NavigationProperty Name="Topic" Relationship="blogModel.FK_Comment_Topic" FromRole="Comment" ToRole="Topic" />
+          <NavigationProperty Name="User" Relationship="blogModel.FK_Comment_User" FromRole="Comment" ToRole="User" />
+          <NavigationProperty Name="Keywords" Relationship="blogModel.FK_Keyword_Comment" FromRole="Comment" ToRole="Keyword" />
+        </EntityType>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="FriendID" />
+            <PropertyRef Name="Self" />
+          </Key>
+          <Property Name="FriendID" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Self" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="CircleID" Type="Guid" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Circle" Relationship="blogModel.FK_Firend_Circle" FromRole="Friend" ToRole="Circle" />
+          <NavigationProperty Name="User" Relationship="blogModel.FK_Firend_User" FromRole="Friend" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="blogModel.FK_Firend_User1" FromRole="Friend" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="blogModel.FK_User_UserGroup" FromRole="Group" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Owner" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="IsAvatar" Type="Boolean" />
+          <Property Name="AlbumID" Type="Guid" />
+          <Property Name="IsCover" Type="Boolean" />
+          <Property Name="Path" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Album" Relationship="blogModel.FK_Image_Album" FromRole="Image" ToRole="Album" />
+          <NavigationProperty Name="User" Relationship="blogModel.FK_Image_User" FromRole="Image" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="TopicId" Type="Guid" />
+          <Property Name="CommendId" Type="Guid" />
+          <NavigationProperty Name="Comment" Relationship="blogModel.FK_Keyword_Comment" FromRole="Keyword" ToRole="Comment" />
+          <NavigationProperty Name="Topic" Relationship="blogModel.FK_Keyword_Topic" FromRole="Keyword" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="Author" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Owner" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="blogModel.FK_Message_User" FromRole="Message" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="blogModel.FK_Message_User1" FromRole="Message" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Author" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="CatagoryID" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="CommentCount" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="blogModel.FK_Topic_Category" FromRole="Topic" ToRole="Category" />
+          <NavigationProperty Name="Comments" Relationship="blogModel.FK_Comment_Topic" FromRole="Topic" ToRole="Comment" />
+          <NavigationProperty Name="Keywords" Relationship="blogModel.FK_Keyword_Topic" FromRole="Topic" ToRole="Keyword" />
+          <NavigationProperty Name="User" Relationship="blogModel.FK_Topic_User" FromRole="Topic" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="FirstName" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="FirstNamePy" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="LastNamePy" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Mail" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="Passwrod" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="QQ" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <Property Name="Sex" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="GroupId" Type="Guid" />
+          <Property Name="RegisterIp" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Albums" Relationship="blogModel.FK_Album_User" FromRole="User" ToRole="Album" />
+          <NavigationProperty Name="Circles" Relationship="blogModel.FK_Circle_User" FromRole="User" ToRole="Circle" />
+          <NavigationProperty Name="Comments" Relationship="blogModel.FK_Comment_User" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="Friends" Relationship="blogModel.FK_Firend_User" FromRole="User" ToRole="Friend" />
+          <NavigationProperty Name="Friends1" Relationship="blogModel.FK_Firend_User1" FromRole="User" ToRole="Friend" />
+          <NavigationProperty Name="Group" Relationship="blogModel.FK_User_UserGroup" FromRole="User" ToRole="Group" />
+          <NavigationProperty Name="Images" Relationship="blogModel.FK_Image_User" FromRole="User" ToRole="Image" />
+          <NavigationProperty Name="Messages" Relationship="blogModel.FK_Message_User" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="Messages1" Relationship="blogModel.FK_Message_User1" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="Topics" Relationship="blogModel.FK_Topic_User" FromRole="User" ToRole="Topic" />
+        </EntityType>
+        <Association Name="FK_Album_User">
+          <End Role="User" Type="blogModel.User" Multiplicity="0..1" />
+          <End Role="Album" Type="blogModel.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Album">
+          <End Role="Album" Type="blogModel.Album" Multiplicity="0..1" />
+          <End Role="Image" Type="blogModel.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="AlbumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topic_Category">
+          <End Role="Category" Type="blogModel.Category" Multiplicity="0..1" />
+          <End Role="Topic" Type="blogModel.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="CatagoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Circle_User">
+          <End Role="User" Type="blogModel.User" Multiplicity="0..1" />
+          <End Role="Circle" Type="blogModel.Circle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Circle">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Firend_Circle">
+          <End Role="Circle" Type="blogModel.Circle" Multiplicity="0..1" />
+          <End Role="Friend" Type="blogModel.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circle">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="CircleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Topic">
+          <End Role="Topic" Type="blogModel.Topic" Multiplicity="0..1" />
+          <End Role="Comment" Type="blogModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="blogModel.User" Multiplicity="0..1" />
+          <End Role="Comment" Type="blogModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keyword_Comment">
+          <End Role="Comment" Type="blogModel.Comment" Multiplicity="0..1" />
+          <End Role="Keyword" Type="blogModel.Keyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Keyword">
+              <PropertyRef Name="CommendId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Firend_User">
+          <End Role="User" Type="blogModel.User" Multiplicity="1" />
+          <End Role="Friend" Type="blogModel.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="FriendID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Firend_User1">
+          <End Role="User" Type="blogModel.User" Multiplicity="1" />
+          <End Role="Friend" Type="blogModel.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="Self" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserGroup">
+          <End Role="Group" Type="blogModel.Group" Multiplicity="0..1" />
+          <End Role="User" Type="blogModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_User">
+          <End Role="User" Type="blogModel.User" Multiplicity="0..1" />
+          <End Role="Image" Type="blogModel.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keyword_Topic">
+          <End Role="Topic" Type="blogModel.Topic" Multiplicity="0..1" />
+          <End Role="Keyword" Type="blogModel.Keyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Keyword">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_User">
+          <End Role="User" Type="blogModel.User" Multiplicity="0..1" />
+          <End Role="Message" Type="blogModel.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_User1">
+          <End Role="User" Type="blogModel.User" Multiplicity="0..1" />
+          <End Role="Message" Type="blogModel.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topic_User">
+          <End Role="User" Type="blogModel.User" Multiplicity="0..1" />
+          <End Role="Topic" Type="blogModel.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Type="Int32" Name="HistoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Url" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="String" Name="Guest" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IP" MaxLength="16" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="blogModelStoreContainer" CdmEntityContainer="blogEntities">
+          <EntitySetMapping Name="Albums"><EntityTypeMapping TypeName="blogModel.Album"><MappingFragment StoreEntitySet="Album">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="Owner" ColumnName="Owner" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="blogModel.Category"><MappingFragment StoreEntitySet="Category">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Parent" ColumnName="Parent" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Circles"><EntityTypeMapping TypeName="blogModel.Circle"><MappingFragment StoreEntitySet="Circle">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Owner" ColumnName="Owner" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Comments"><EntityTypeMapping TypeName="blogModel.Comment"><MappingFragment StoreEntitySet="Comment">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="Author" ColumnName="Author" />
+            <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+            <ScalarProperty Name="IP" ColumnName="IP" />
+            <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Friends"><EntityTypeMapping TypeName="blogModel.Friend"><MappingFragment StoreEntitySet="Friend">
+            <ScalarProperty Name="FriendID" ColumnName="FriendID" />
+            <ScalarProperty Name="Self" ColumnName="Self" />
+            <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Groups"><EntityTypeMapping TypeName="blogModel.Group"><MappingFragment StoreEntitySet="Group">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Images"><EntityTypeMapping TypeName="blogModel.Image"><MappingFragment StoreEntitySet="Image">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Data" ColumnName="Data" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="Owner" ColumnName="Owner" />
+            <ScalarProperty Name="IsAvatar" ColumnName="IsAvatar" />
+            <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+            <ScalarProperty Name="IsCover" ColumnName="IsCover" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Keywords"><EntityTypeMapping TypeName="blogModel.Keyword"><MappingFragment StoreEntitySet="Keyword">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+            <ScalarProperty Name="CommendId" ColumnName="CommendId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Messages"><EntityTypeMapping TypeName="blogModel.Message"><MappingFragment StoreEntitySet="Message">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="Author" ColumnName="Author" />
+            <ScalarProperty Name="Owner" ColumnName="Owner" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Topics"><EntityTypeMapping TypeName="blogModel.Topic"><MappingFragment StoreEntitySet="Topic">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="Author" ColumnName="Author" />
+            <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
+            <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+            <ScalarProperty Name="CommentCount" ColumnName="CommentCount" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="blogModel.User"><MappingFragment StoreEntitySet="User">
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="FirstNamePy" ColumnName="FirstNamePy" />
+            <ScalarProperty Name="LastNamePy" ColumnName="LastNamePy" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="Mail" ColumnName="Mail" />
+            <ScalarProperty Name="Passwrod" ColumnName="Passwrod" />
+            <ScalarProperty Name="QQ" ColumnName="QQ" />
+            <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Sex" ColumnName="Sex" />
+            <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+            <ScalarProperty Name="RegisterIp" ColumnName="RegisterIp" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Histories">
+            <EntityTypeMapping TypeName="blogModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Guest" ColumnName="Guest" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="BlogModel">
+        <EntityTypeShape EntityType="blogModel.Album" Width="1.5" PointX="5.25" PointY="6" Height="2.3520719401041656" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Category" Width="1.5" PointX="6" PointY="2.375" Height="1.9700325520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Circle" Width="1.5" PointX="5.25" PointY="9.125" Height="2.3520719401041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Comment" Width="1.5" PointX="10.25" PointY="8.875" Height="2.9251310221354174" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Friend" Width="1.5" PointX="7.5" PointY="12.125" Height="2.3520719401041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Group" Width="1.5" PointX="0.75" PointY="9.375" Height="1.7790128580729174" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Image" Width="1.5" PointX="7.5" PointY="8" Height="3.3071704101562496" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Keyword" Width="1.5" PointX="12.5" PointY="6.5" Height="2.5430916341145817" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Message" Width="1.5" PointX="5.25" PointY="15.875" Height="2.3520719401041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.Topic" Width="1.5" PointX="8.25" PointY="3.625" Height="3.3071704101562531" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogModel.User" Width="1.5" PointX="3" PointY="7.375" Height="5.7904264322916674" IsExpanded="true" />
+        <AssociationConnector Association="blogModel.FK_Album_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.8635359700520828" />
+          <ConnectorPoint PointX="5.25" PointY="7.8635359700520828" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Image_Album" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="8.1760359700520837" />
+          <ConnectorPoint PointX="7.5" PointY="8.1760359700520837" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Topic_Category" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="3.9850162760416667" />
+          <ConnectorPoint PointX="8.25" PointY="3.9850162760416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Circle_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.301035970052084" />
+          <ConnectorPoint PointX="5.25" PointY="10.301035970052084" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Firend_Circle" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="11.477071940104167" />
+          <ConnectorPoint PointX="6" PointY="13.301035970052084" />
+          <ConnectorPoint PointX="7.5" PointY="13.301035970052084" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Comment_Topic" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.40625" PointY="6.9321704101562531" />
+          <ConnectorPoint PointX="9.40625" PointY="11.584900716145834" />
+          <ConnectorPoint PointX="10.25" PointY="11.584900716145834" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Comment_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.755015869140625" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="11.755015869140625" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="11.755015869140625" />
+          <ConnectorPoint PointX="9.1197891666666653" PointY="11.755015869140625" />
+          <ConnectorPoint PointX="9.2864558333333331" PointY="11.755015869140625" />
+          <ConnectorPoint PointX="10.25" PointY="11.755015869140625" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Keyword_Comment" ManuallyRouted="false">
+          <ConnectorPoint PointX="11.75" PointY="10.421611828124998" />
+          <ConnectorPoint PointX="13.25" PointY="10.421611828124998" />
+          <ConnectorPoint PointX="13.25" PointY="9.0430916341145817" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Firend_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="12.645213216145834" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="12.645213216145834" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="12.645213216145834" />
+          <ConnectorPoint PointX="7.5" PointY="12.645213216145834" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Firend_User1" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="12.322606608072917" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="12.322606608072917" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="12.322606608072917" />
+          <ConnectorPoint PointX="7.5" PointY="12.322606608072917" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_User_UserGroup" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.264506429036459" />
+          <ConnectorPoint PointX="3" PointY="10.264506429036459" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Image_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.7385359700520837" />
+          <ConnectorPoint PointX="7.5" PointY="8.7385359700520837" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Keyword_Topic" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="6.7160852050781266" />
+          <ConnectorPoint PointX="12.5" PointY="6.7160852050781266" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Message_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="13.165426432291667" />
+          <ConnectorPoint PointX="3.75" PointY="17.051035970052084" />
+          <ConnectorPoint PointX="5.25" PointY="17.051035970052084" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Message_User1" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.1562525" PointY="13.165426432291667" />
+          <ConnectorPoint PointX="4.1562525" PointY="16.431765485026041" />
+          <ConnectorPoint PointX="5.25" PointY="16.431765485026041" />
+        </AssociationConnector>
+        <AssociationConnector Association="blogModel.FK_Topic_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.940010434570306" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="11.940010434570306" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="11.940010434570306" />
+          <ConnectorPoint PointX="9.2031225" PointY="11.940010434570306" />
+          <ConnectorPoint PointX="9.2031225" PointY="6.9321704101562531" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="blogModel.History" Width="1.5" PointX="1.7642676335593071" PointY="6.8128141494527528" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

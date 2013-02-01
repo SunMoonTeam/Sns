@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/base.css")" rel="stylesheet")" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+   <style type="text/css">
+       #friendRequest {
+           position: absolute;
+           background-color: black;
+           width: 50px;
+           top: 37px;
+           z-index: 88888;
+       }
+       
+   </style> 
+</head>
+<body>
+    <div style="height: 37px;">
+        <div class="blurbar">
+            <div style="overflow: hidden; height: 37px;">
+                <div class="navigator">
+                    <p class="logo blurbar_item">
+                        <a href="@Url.Content("~/")">Sun & Moon</a>
+                    </p>
+                    <div class="notifContainer blurbar_item">
+                        <div class="fbJewel blurbar_item" id="fbRequestsJewel">
+                            <a class="blurbar_item jewelButton"></a>
+                        </div>
+                        <div class="fbJewel blurbar_item" id="fbMessagesJewel">
+                            <a class="blurbar_item jewelButton "></a>
+                        </div>
+                        <div class="fbJewel blurbar_item" id="fbNotificationsJewel">
+                            <a class="blurbar_item jewelButton"></a>
+                        </div>
+
+                        <script type="text/javascript">
+                            $(function () {
+                                function showMessage() {
+                                    var url = "/Message/getMessages";
+                                    $.get(url, {},
+                                        function (html) {
+                                            $("#friendRequest").html(html);
+                                        });
+                                };
+
+                                showMessage();
+                            });
+
+                        </script>
+                    </div>
+                    <div class="searchtools blurbar_item">
+                        <input />
+                        <input type="button" value="Search" />
+                    </div>
+                    <div class="logonPartial blurbar_item">
+                        @Html.Partial("_LogOnPartial")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="friendRequest" >
+
+        </div>
+        
+
+    </div>
+    <div id="content">
+        @RenderBody()
+    </div>
+</body>
+</html>
