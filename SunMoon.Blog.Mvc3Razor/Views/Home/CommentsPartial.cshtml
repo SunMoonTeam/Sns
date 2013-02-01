@@ -1,0 +1,15 @@
+﻿@model SunMoon.Blog.DataAccess.EntityFramework.Comment
+<li class="comment_item">
+    <div class="desc">
+        @Html.Raw(Model.Description)
+    </div>
+    <div class="item_info">
+        <span>
+            @Model.Author
+        </span><span>
+            @if (Model.CreateTime != null) {
+                @Model.CreateTime.Value.ToString("g")
+            }
+        </span>
+    </div>
+</li>

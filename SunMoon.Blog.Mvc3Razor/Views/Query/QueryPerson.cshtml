@@ -1,0 +1,55 @@
+﻿@model SunMoon.Blog.Mvc3Razor.Models.QueryPerson
+@{
+    ViewBag.Title = "找朋友";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    我想找人</h2>
+<div class="tools">
+    @using (Html.BeginForm("QueryPerson", "Query")) {
+        @Html.LabelFor(i => i.Keyword)
+        @Html.TextBoxFor(i => i.Keyword)
+        <input type="submit" value="搜索" />
+    }
+    <ul style="margin: 15px 0 0 0;">
+        @foreach (var p in Model.Persons) {
+            <li style="float: left; width: 100px; margin: 0 10px 15px 0;">
+                @using (Html.BeginForm("AddFriend", "Query")) {
+                    <img style="width: 80px; height: 80px;" />
+                    <p>@p.Name</p>
+                    <span>@p.Age</span>
+                    <span>@p.Sex</span>
+                    <input name="friend" type="hidden" value="@p.Name" />
+                    <input type="submit" value="提交" />
+                    <input type="button" class="btn_add_friend" value="添加" onclick="submitAddFriend(this)" friendid="@p.Name" />
+                }
+            </li>
+        }
+    </ul>
+    <div>
+    </div>
+</div>
+<script type="text/javascript">
+    function validationFriend(btn) {
+        var f = btn.attr("friendid");
+
+        if (f != null && f.length > 0) {
+            return true;
+        }
+
+        return false;
+    }
+    function submitAddFriend(btn) {
+        btn = $(btn);
+
+        var f = btn.attr("friendid");
+
+        if (validationFriend(btn)) {
+            $.post("/Query/addfriend",
+            { "friend": f },
+            function (data) {
+                btn.val("待审核");
+            });
+        }
+    }
+</script>

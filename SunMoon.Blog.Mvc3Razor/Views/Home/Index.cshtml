@@ -1,0 +1,178 @@
+﻿@model SunMoon.Blog.Mvc3Razor.Models.IndexModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<!--ajax topic-->
+<script type="text/javascript">
+    function Initialize_Comment_Topic() {
+        //        $(".submit_topic").click(function () {
+        var desc = $("#desc").val();
+
+        $.post("/topic/addtopic",
+            { "desc": desc },
+            function (data) {
+                var html = $(".topic_lists").html();
+                var newTopicDetails = "<li>#</li>".replace("#", data);
+                $(".topic_lists").html(newTopicDetails + html);
+
+                //                Initialize_Comment_Topic();
+            });
+        //        });
+    }
+</script>
+<!--ajax comment-->
+<script type="text/javascript">
+    function Initialize_Submit_Comment(t) {
+        //        $(".submit_comment").click(function () {
+        var topicId = $(t).attr("topicid");
+        var commentId = $(t).attr("commentId");
+        var desc = $("#" + topicId).val();
+
+        $.post("/comment/addcomment", { "description": desc, "topicId": topicId },
+        function (data) {
+            var html = $("#ul" + topicId).html();
+            $("#ul" + topicId).html(data + html);
+
+            //            Initialize_Submit_Comment();
+        });
+        //        });
+    }
+</script>
+<!-- initialize loading-->
+<script type="text/javascript">
+    function showMoreTopics(t) {
+        t = $(t);
+
+        var count = parseInt(t.attr("count"));
+        var currentIndex = parseInt(t.attr("currentIndex"));
+        var url = "/home/gettopicsview/" + currentIndex;
+
+        $.get(url, {}
+        , function (data) {
+            $(".next_page").attr("outerHTML", "");
+
+            var context = $(".topic_lists");
+
+            var html = context.html() + data;
+
+            context.html(html);
+        });
+
+    }
+    $(function () {
+        var context = $(".topic_lists");
+
+        $.get("/home/gettopicsview", {}
+            , function (data) {
+                context.html(data);
+
+            });
+    });
+</script>
+<div class="mainContainer">
+    <div class="leftContainer">
+        <div class="account tools">
+            <a>
+                <img class="avatar" alt="" /></a> <a>XXXXX</a>
+        </div>
+        <div class="circle tools">
+            <p class="navHader">
+                圈子</p>
+            <ul class="navList">
+                <li class="navItem">
+                    <div class="btnWarp">
+                        <div class="warp">
+                            <img class="navIcon" />
+                        </div>
+                    </div>
+                    <a>
+                        <img class="navIcon" /><span>朋友</span></a> </li>
+                <li class="navItem">
+                    <div class="btnWarp">
+                        <div class="warp">
+                            <img class="navIcon" />
+                        </div>
+                    </div>
+                    <a>
+                        <img class="navIcon" /><span>朋友</span></a> </li>
+                <li class="navItem">
+                    <div class="btnWarp">
+                        <div class="warp">
+                            <img class="navIcon" />
+                        </div>
+                    </div>
+                    <a>
+                        <img class="navIcon" /><span>朋友</span></a> </li>
+                <li class="navItem">
+                    <div class="btnWarp">
+                        <div class="warp">
+                            <img class="navIcon" />
+                        </div>
+                    </div>
+                    <a>
+                        <img class="navIcon" /><span>朋友</span></a> </li>
+            </ul>
+        </div>
+        <div class="app tools">
+            <p class="navHader">
+                应用</p>
+            <ul class="navList">
+                <li class="navItem">
+                    <div class="btnWarp">
+                        <div class="warp">
+                            <img class="navIcon" />
+                        </div>
+                    </div>
+                    <a>
+                        <img class="navIcon" /><span>朋友</span></a> </li>
+                <li class="navItem">
+                    <div class="btnWarp">
+                        <div class="warp">
+                            <img class="navIcon" />
+                        </div>
+                    </div>
+                    <a>
+                        <img class="navIcon" /><span>朋友</span></a> </li>
+                <li class="navItem">
+                    <div class="btnWarp">
+                        <div class="warp">
+                            <img class="navIcon" />
+                        </div>
+                    </div>
+                    <a>
+                        <img class="navIcon" /><span>朋友</span></a> </li>
+            </ul>
+        </div>
+    </div>
+    <div class="centerContainer">
+        <div class="new_topic">
+            <textarea id="desc" name="desc" rows="5" cols="55" style="width: 98%"></textarea>
+            <input class="submit_topic" type="button" value="发表" onclick="Initialize_Comment_Topic()" />
+        </div>
+        <div class="topics">
+            <ul class="topic_lists">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- friends beging -->
+<script type="text/javascript">
+    function showFriends() {
+        var url = "/friend/myfriends";
+
+        $.get(url, {}
+        , function (html) {
+            $("body").append(html);
+            console.log(html);
+                    }
+            );
+    }
+
+    $(function () {
+        showFriends();
+    });
+</script>
+<!-- friends end -->
