@@ -1,0 +1,81 @@
+﻿@model SunMoon.Blog.Mvc3Razor.Models.IndexModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<!--ajax topic-->
+<script type="text/javascript">
+    function Initialize_Comment_Topic() {
+        //        $(".submit_topic").click(function () {
+        var desc = $("#desc").val();
+
+        $.post("/topic/addtopic",
+            { "desc": desc },
+            function (data) {
+                var html = $(".topic_lists").html();
+                var newTopicDetails = "<li>#</li>".replace("#", data);
+                $(".topic_lists").html(newTopicDetails + html);
+
+                //                Initialize_Comment_Topic();
+            });
+        //        });
+    }
+</script>
+<!--ajax comment-->
+<script type="text/javascript">
+    function Initialize_Submit_Comment(t) {
+        //        $(".submit_comment").click(function () {
+        var topicId = $(t).attr("topicid");
+        var commentId = $(t).attr("commentId");
+        var desc = $("#" + topicId).val();
+
+        $.post("/comment/addcomment", { "description": desc, "topicId": topicId },
+        function (data) {
+            var html = $("#ul" + topicId).html();
+            $("#ul" + topicId).html(data + html);
+
+            //            Initialize_Submit_Comment();
+        });
+        //        });
+    }
+</script>
+<!-- initialize loading-->
+<script type="text/javascript">
+    function showMoreTopics(t) {
+        t = $(t);
+
+        var count = parseInt(t.attr("count"));
+        var currentIndex = parseInt(t.attr("currentIndex"));
+        var url = "/home/gettopicsview/" + currentIndex;
+
+        $.get(url, {}
+        , function (data) {
+            $(".next_page").attr("outerHTML", "");
+
+            var context = $(".topic_lists");
+
+            var html = context.html() + data;
+
+            context.html(html);
+        });
+
+    }
+    $(function () {
+        var context = $(".topic_lists");
+
+        $.get("/home/gettopicsview", {}
+            , function (data) {
+                context.html(data);
+
+            });
+    });
+</script>
+<div class="new_topic">
+    <textarea id="desc" name="desc" rows="5" cols="55"></textarea>
+    <input class="submit_topic" type="button" value="发表" onclick="Initialize_Comment_Topic()" />
+</div>
+<div class="topics">
+    <ul class="topic_lists">
+    </ul>
+</div>

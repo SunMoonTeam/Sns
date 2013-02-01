@@ -1,0 +1,49 @@
+﻿@model SunMoon.Blog.DataAccess.EntityFramework.Topic
+<li class="topic_details">
+    <div class="item_info uiStreamStory">
+        <div class="usr_info">
+            <a href="javascript:void(0)" class="usrAvatar">
+                <img />
+            </a>
+            <div class="storyInnerContent">
+                <div class="mainWarpper">
+                    <a href="javascript:void(0)" class="uiStreamMessage">@Model.Author</a>
+                    @if ((DateTime.Now - Model.CreateTime.Value).Days < 1) {
+                        @string.Format("今天{0}", Model.CreateTime.Value.ToString("hh:mm"))
+                    }
+                    else {
+                        @Model.CreateTime.Value.ToString("yyyy-MM-dd")
+                    }
+                    <div class="uiStreamMessage">
+                        @Html.Raw(Model.Description)
+                    </div>
+                </div>
+                <div class="comments">
+                    <ul id="@string.Format("ul{0}", Model.ID)">
+                        @foreach (var c in Model.Comments.OrderByDescending(cmt => cmt.CreateTime).ToList()) {
+                            <li class="comment_item">
+                                <div class="item_info">
+                                    <span>
+                                        @c.Author
+                                    </span><span>
+                                        @if (c.CreateTime != null) {
+                                            @c.CreateTime.Value.ToString("g")
+                                        }
+                                    </span>
+                                </div>
+                                <div class="desc">
+                                    @Html.Raw(c.Description)
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="topic_controls">
+                    <input name="description" id="@Model.ID" />
+                    <input type="hidden" name="topicid" value="@Model.ID" />
+                    <input type="button" class="submit_comment" value="回复" topicid="@Model.ID" onclick="Initialize_Submit_Comment(this)"  />
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

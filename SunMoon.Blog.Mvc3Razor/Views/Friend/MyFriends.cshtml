@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "MyFriends";
+}
+
+@model SunMoon.Blog.Mvc3Razor.Models.MyFriends
+
+<div class="rightContainer">
+    <ul>
+        @foreach (var f in Model.Friends)
+        { 
+            <li>
+                <a href="/?userid=@f.Friend.UserID">
+                    <img />
+                    <span>@f.Friend.UserID
+                    </span>
+                </a>                
+            </li>
+        }
+    </ul>
+
+    <div class="searchPerson">
+        <input id="SearchPerson" />
+        <input type="button" value="Search" />
+    </div>
+</div>

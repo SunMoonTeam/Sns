@@ -1,0 +1,13 @@
+﻿@{
+    if (Session["passport"] != null) {
+        SunMoon.Blog.Mvc3Razor.Models.Passport passport = Session["passport"] as SunMoon.Blog.Mvc3Razor.Models.Passport;
+
+    <text> 欢迎使用 <b>@passport.AccountID</b> [ @Html.ActionLink("搜索朋友", "QueryPerson", "Query")]
+    [ @Html.ActionLink("退出登陆", "LogOff", "Account")]
+    </text>
+    }
+    else {
+    @:[ @Html.ActionLink("登录", "LogOn", "Account") ]
+    @:[ @Html.ActionLink("注册", "Register", "Account") ]
+    }
+}
